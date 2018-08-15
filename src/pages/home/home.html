@@ -1,0 +1,54 @@
+<!-- -->
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <strong>Mis Reclamos</strong>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button tappable (click)="presentNotifications($event)">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="animated fadeIn common-bg">
+
+  <ion-grid *ngIf="reclamos?.length == 0">
+    <ion-row>
+      <ion-col class="text-center caja-vacia">
+        <ion-icon class="icono-grande" ios="ios-sunny" md="md-sunny"></ion-icon>
+        <p>
+          No hay reclamos realizados.
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card *ngFor="let reclamo of reclamos">
+    <div (click)="verReclamo(reclamo)">
+      <ion-card-header>
+        <h1>Reclamo n°: {{ reclamo.id }}</h1>
+      </ion-card-header>
+
+      <ion-card-content>
+        <h1>{{ reclamo.subcategoria?.categoria?.nombre }}</h1>
+        <h2>{{ reclamo.subcategoria?.nombre }}</h2>
+      </ion-card-content>
+    </div>
+    <ion-item>
+      <button ion-button icon-left clear item-end (click)="eliminarReclamo(reclamo.id)">
+        <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+      </button>
+    </ion-item>
+</ion-card>
+
+  <ion-fab center bottom>
+    <button ion-fab color="primary" (click)="nuevoReclamo()">
+      <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

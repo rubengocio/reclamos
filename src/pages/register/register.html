@@ -1,0 +1,86 @@
+<!-- -->
+<ion-content class="auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div text-center>
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Reclamos</strong>
+      </h2>
+    </div>
+
+    <!-- Login form -->
+    <form class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="nombre" item-start class="text-primary"></ion-icon>
+          Nombre
+        </ion-label>
+        <ion-input type="text" name="nombre" [(ngModel)]="usuario.nombre" required (ionFocus)="quitarErrores()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="apellido" item-start class="text-primary"></ion-icon>
+          Apellido
+        </ion-label>
+        <ion-input type="text" name="apellido" [(ngModel)]="usuario.apellido" required (ionFocus)="quitarErrores()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="email" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="usuario.email" required (ionFocus)="quitarErrores()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Contraseña
+        </ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="usuario.password" required (ionFocus)="quitarErrores()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Repetir Contraseña
+        </ion-label>
+        <ion-input type="password" name="repetir_password" [(ngModel)]="usuario.repetir_password" required (ionFocus)="quitarErrores()"></ion-input>
+      </ion-item>
+
+      <div *ngIf="error" style="color: red;">
+        <div *ngIf="msjError['nombre'] != undefined ">
+          {{msjError.nombre}}
+        </div>
+        <div *ngIf="msjError['apellido'] != undefined ">
+          {{msjError.apellido}}
+        </div>
+        <div *ngIf="msjError['email'] != undefined ">
+          {{msjError.email}}
+        </div>
+        <div *ngIf="msjError['password'] != undefined ">
+          {{msjError.password}}
+        </div>
+        <div *ngIf="msjError['username'] != undefined ">
+          Ya existe un usuario con el email ingresado
+        </div>
+      </div>
+    </form>
+
+    <div margin-top>
+      <button ion-button block color="dark" [disabled]="!isValid()" tappable (click)="register()">
+        Regístrate
+      </button>
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="primary" tappable (click)="login()">Ya tengo una cuenta</span>
+    </div>
+
+  </div>
+</ion-content>

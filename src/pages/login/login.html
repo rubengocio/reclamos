@@ -1,0 +1,58 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Reclamos</strong>
+      </h2>
+    </div>
+
+    <!-- Login form -->
+    <form class="list-form" (ngSubmit)="login()">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="email" item-start class="text-primary"></ion-icon>
+          Usuario
+        </ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="registerCredentials.email" required (ionFocus)="emailFocusFunction()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Constraseña
+        </ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="registerCredentials.password" required (ionFocus)="passwordFocusFunction()"></ion-input>
+      </ion-item>
+      <div *ngIf="error" style="color: red;">
+        <br>
+        {{msjError}}
+        <br>
+      </div>
+      <button ion-button icon-start block color="dark" tappable type="submit" [disabled]="!isValid()">
+        <ion-icon name="log-in"></ion-icon>
+        INICIAR SESION
+      </button>
+    </form>
+
+    <!--<p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Recuperar Constraseña?</strong></p>-->
+
+    <div>
+
+
+      <!--<button ion-button icon-start block color="dark" tappable (click)="anonimo()">
+        <ion-icon name="log-in"></ion-icon>
+        ANONIMO
+      </button>-->
+    </div>
+
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="secondary" tappable (click)="register()"><strong>Registrarse</strong></span>
+    </div>
+
+  </div>
+</ion-content>
